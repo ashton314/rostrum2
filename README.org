@@ -3,6 +3,17 @@
 
 A web application to manage the creation and publication of programs for religious services, like those of the weekly Sunday services held by the [[https://churchofjesuschrist.org][Church of Jesus Christ of Latter-day Saints]].
 
+* Up and running
+
+This project is built using the [[https://phoenixframework.org/][Phoenix web framework]] built on top of [[https://elixir-lang.org][Elixir]].
+
+ - Install dependencies with ~mix deps.get~
+ - Start up db with ~mix docker.db start~
+ - Create database with ~mix ecto.setup~
+ - Start Phoenix as server with ~mix phx.server~ or inside an IEx shell with ~iex -S mix phx.server~
+
+Project should be running at [[http://localhost:4000]].
+
 * Goals
 
  - Web-first: I'll be skipping the PDF generation and focusing on having a nice, easy-to-read web version.
