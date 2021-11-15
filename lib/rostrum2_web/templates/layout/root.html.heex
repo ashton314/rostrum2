@@ -9,10 +9,10 @@
     <link phx-track-static rel="stylesheet" href={Routes.static_path(@conn, "/assets/app.css")}/>
     <script defer phx-track-static type="text/javascript" src={Routes.static_path(@conn, "/assets/app.js")}></script>
   </head>
-  <body>
-    <header>
-      <section class="container">
-        <nav>
+  <body class="container mx-auto bg-gray-50 dark:bg-gray-600">
+    <header class="flex w-full md:px-2">
+      <section class="w-full border-b-2 border-gray-300">
+        <nav class="w-auto ml-auto">
           <ul>
             <%= if function_exported?(Routes, :live_dashboard_path, 2) do %>
               <li><%= link "LiveDashboard", to: Routes.live_dashboard_path(@conn, :home) %></li>
@@ -22,6 +22,8 @@
         </nav>
       </section>
     </header>
+
     <%= @inner_content %>
+
   </body>
 </html>
