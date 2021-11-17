@@ -28,4 +28,18 @@ defmodule Rostrum.AccountsFixtures do
     [_, token | _] = String.split(captured_email.text_body, "[TOKEN]")
     token
   end
+
+  @doc """
+  Generate a unit.
+  """
+  def unit_fixture(attrs \\ %{}) do
+    {:ok, unit} =
+      attrs
+      |> Enum.into(%{
+        name: "some name"
+      })
+      |> Rostrum.Accounts.create_unit()
+
+    unit
+  end
 end

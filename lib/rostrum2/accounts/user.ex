@@ -1,12 +1,16 @@
 defmodule Rostrum.Accounts.User do
   use Ecto.Schema
   import Ecto.Changeset
+  alias Rostrum.Accounts.Unit
 
   schema "users" do
     field :email, :string
     field :password, :string, virtual: true, redact: true
     field :hashed_password, :string, redact: true
     field :confirmed_at, :naive_datetime
+
+    belongs_to :unit, Unit
+    field :role, :string, default: "base"
 
     timestamps()
   end
