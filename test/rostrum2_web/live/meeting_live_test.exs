@@ -3,10 +3,20 @@ defmodule RostrumWeb.MeetingLiveTest do
 
   import Phoenix.LiveViewTest
   import Rostrum.MeetingsFixtures
+  import Rostrum.AccountsFixtures
 
   @create_attrs %{date: %{day: 24, hour: 4, minute: 22, month: 11, year: 2021}, title: "some title"}
   @update_attrs %{date: %{day: 25, hour: 4, minute: 22, month: 11, year: 2021}, title: "some updated title"}
   @invalid_attrs %{date: %{day: 30, hour: 4, minute: 22, month: 2, year: 2021}, title: nil}
+
+  defp create_user(%{conn: conn}) do
+    conn =
+      conn
+      |> Map.replace!(:secret_key_base, RostrumWeb.Endpoint.config(:secret_key_base))
+      |> init_test_session(%{})
+
+    %{user: user_fixture(), conn: conn}
+  end
 
   defp create_meeting(_) do
     meeting = meeting_fixture()

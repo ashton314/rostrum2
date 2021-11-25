@@ -1,12 +1,14 @@
 defmodule Rostrum.Meetings.Meeting do
   use Ecto.Schema
   import Ecto.Changeset
+  alias Rostrum.Accounts.Unit
 
   schema "meetings" do
     field :date, :naive_datetime
     field :title, :string
-    field :unit_id, :id
     field :creator_id, :id
+
+    belongs_to :unit, Unit
 
     timestamps()
   end
