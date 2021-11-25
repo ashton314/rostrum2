@@ -2,11 +2,13 @@ defmodule Rostrum.Accounts.Unit do
   use Ecto.Schema
   import Ecto.Changeset
   alias Rostrum.Accounts.User
+  alias Rostrum.Meetings.Meeting
 
   schema "units" do
     field :name, :string
 
     has_many :users, User
+    has_many :meetings, Meeting
 
     timestamps()
   end

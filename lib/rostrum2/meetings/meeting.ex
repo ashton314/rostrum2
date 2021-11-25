@@ -17,6 +17,7 @@ defmodule Rostrum.Meetings.Meeting do
   def changeset(meeting, attrs) do
     meeting
     |> cast(attrs, [:date, :title])
+    |> cast_assoc(:unit, with: &Unit.changeset/2)
     |> validate_required([:date, :title])
   end
 end

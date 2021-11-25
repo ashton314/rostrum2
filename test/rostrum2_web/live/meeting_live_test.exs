@@ -5,26 +5,38 @@ defmodule RostrumWeb.MeetingLiveTest do
   import Rostrum.MeetingsFixtures
   import Rostrum.AccountsFixtures
 
+  alias RostrumWeb.UserAuth
+
   @create_attrs %{date: %{day: 24, hour: 4, minute: 22, month: 11, year: 2021}, title: "some title"}
   @update_attrs %{date: %{day: 25, hour: 4, minute: 22, month: 11, year: 2021}, title: "some updated title"}
   @invalid_attrs %{date: %{day: 30, hour: 4, minute: 22, month: 2, year: 2021}, title: nil}
 
-  defp create_user(%{conn: conn}) do
+  defp create_unit(_) do
+    unit = unit_fixture()
+    %{unit: unit}
+  end
+
+  defp create_user(%{unit: unit, conn: conn}) do
     conn =
       conn
       |> Map.replace!(:secret_key_base, RostrumWeb.Endpoint.config(:secret_key_base))
       |> init_test_session(%{})
 
-    %{user: user_fixture(), conn: conn}
+    %{user: user_fixture(unit_id: unit.id), conn: conn}
   end
 
-  defp create_meeting(_) do
-    meeting = meeting_fixture()
+  defp login_user(%{conn: conn, user: user}) do
+    conn = UserAuth.log_in_user(conn, user)
+    %{conn: conn}
+  end
+
+  defp create_meeting(%{unit: unit}) do
+    meeting = meeting_fixture(unit_id: unit.id)
     %{meeting: meeting}
   end
 
   describe "Index" do
-    setup [:create_meeting]
+    setup [:create_unit, :create_user, :login_user, :create_meeting]
 
     test "lists all meetings", %{conn: conn, meeting: meeting} do
       {:ok, _index_live, html} = live(conn, Routes.meeting_index_path(conn, :index))
