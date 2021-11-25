@@ -1,0 +1,39 @@
+<h1>Listing Settings</h1>
+
+<%= if @live_action in [:new, :edit] do %>
+  <%= live_modal RostrumWeb.SettingsLive.FormComponent,
+    id: @settings.id || :new,
+    title: @page_title,
+    action: @live_action,
+    settings: @settings,
+    return_to: Routes.settings_index_path(@socket, :index) %>
+<% end %>
+
+<table>
+  <thead>
+    <tr>
+      <th>Active</th>
+      <th>Public</th>
+      <th>Contact email</th>
+
+      <th></th>
+    </tr>
+  </thead>
+  <tbody id="settings">
+    <%= for settings <- @settings_collection do %>
+      <tr id={"settings-#{settings.id}"}>
+        <td><%= settings.active %></td>
+        <td><%= settings.public %></td>
+        <td><%= settings.contact_email %></td>
+
+        <td>
+          <span><%= live_redirect "Show", to: Routes.settings_show_path(@socket, :show, settings) %></span>
+          <span><%= live_patch "Edit", to: Routes.settings_index_path(@socket, :edit, settings) %></span>
+          <span><%= link "Delete", to: "#", phx_click: "delete", phx_value_id: settings.id, data: [confirm: "Are you sure?"] %></span>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<span><%= live_patch "New Settings", to: Routes.settings_index_path(@socket, :new) %></span>

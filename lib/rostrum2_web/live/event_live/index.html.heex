@@ -1,0 +1,45 @@
+<h1>Listing Events</h1>
+
+<%= if @live_action in [:new, :edit] do %>
+  <%= live_modal RostrumWeb.EventLive.FormComponent,
+    id: @event.id || :new,
+    title: @page_title,
+    action: @live_action,
+    event: @event,
+    return_to: Routes.event_index_path(@socket, :index) %>
+<% end %>
+
+<table>
+  <thead>
+    <tr>
+      <th>Order</th>
+      <th>Type</th>
+      <th>Title</th>
+      <th>Hymn</th>
+      <th>Participants</th>
+      <th>Note</th>
+
+      <th></th>
+    </tr>
+  </thead>
+  <tbody id="events">
+    <%= for event <- @events do %>
+      <tr id={"event-#{event.id}"}>
+        <td><%= event.order %></td>
+        <td><%= event.type %></td>
+        <td><%= event.title %></td>
+        <td><%= event.hymn %></td>
+        <td><%= event.participants %></td>
+        <td><%= event.note %></td>
+
+        <td>
+          <span><%= live_redirect "Show", to: Routes.event_show_path(@socket, :show, event) %></span>
+          <span><%= live_patch "Edit", to: Routes.event_index_path(@socket, :edit, event) %></span>
+          <span><%= link "Delete", to: "#", phx_click: "delete", phx_value_id: event.id, data: [confirm: "Are you sure?"] %></span>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<span><%= live_patch "New Event", to: Routes.event_index_path(@socket, :new) %></span>

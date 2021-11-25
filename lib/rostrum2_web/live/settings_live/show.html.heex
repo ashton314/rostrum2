@@ -1,0 +1,32 @@
+<h1>Show Settings</h1>
+
+<%= if @live_action in [:edit] do %>
+  <%= live_modal RostrumWeb.SettingsLive.FormComponent,
+    id: @settings.id,
+    title: @page_title,
+    action: @live_action,
+    settings: @settings,
+    return_to: Routes.settings_show_path(@socket, :show, @settings) %>
+<% end %>
+
+<ul>
+
+  <li>
+    <strong>Active:</strong>
+    <%= @settings.active %>
+  </li>
+
+  <li>
+    <strong>Public:</strong>
+    <%= @settings.public %>
+  </li>
+
+  <li>
+    <strong>Contact email:</strong>
+    <%= @settings.contact_email %>
+  </li>
+
+</ul>
+
+<span><%= live_patch "Edit", to: Routes.settings_show_path(@socket, :edit, @settings), class: "button" %></span> |
+<span><%= live_redirect "Back", to: Routes.settings_index_path(@socket, :index) %></span>

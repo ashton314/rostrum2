@@ -42,4 +42,20 @@ defmodule Rostrum.AccountsFixtures do
 
     unit
   end
+
+  @doc """
+  Generate a settings.
+  """
+  def settings_fixture(attrs \\ %{}) do
+    {:ok, settings} =
+      attrs
+      |> Enum.into(%{
+        active: true,
+        contact_email: "some contact_email",
+        public: true
+      })
+      |> Rostrum.Accounts.create_settings()
+
+    settings
+  end
 end

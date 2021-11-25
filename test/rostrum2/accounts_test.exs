@@ -559,4 +559,62 @@ defmodule Rostrum.AccountsTest do
       assert %Ecto.Changeset{} = Accounts.change_unit(unit)
     end
   end
+
+  describe "settings" do
+    alias Rostrum.Accounts.Settings
+
+    import Rostrum.AccountsFixtures
+
+    @invalid_attrs %{active: nil, contact_email: nil, public: nil}
+
+    test "list_settings/0 returns all settings" do
+      settings = settings_fixture()
+      assert Accounts.list_settings() == [settings]
+    end
+
+    test "get_settings!/1 returns the settings with given id" do
+      settings = settings_fixture()
+      assert Accounts.get_settings!(settings.id) == settings
+    end
+
+    test "create_settings/1 with valid data creates a settings" do
+      valid_attrs = %{active: true, contact_email: "some contact_email", public: true}
+
+      assert {:ok, %Settings{} = settings} = Accounts.create_settings(valid_attrs)
+      assert settings.active == true
+      assert settings.contact_email == "some contact_email"
+      assert settings.public == true
+    end
+
+    test "create_settings/1 with invalid data returns error changeset" do
+      assert {:error, %Ecto.Changeset{}} = Accounts.create_settings(@invalid_attrs)
+    end
+
+    test "update_settings/2 with valid data updates the settings" do
+      settings = settings_fixture()
+      update_attrs = %{active: false, contact_email: "some updated contact_email", public: false}
+
+      assert {:ok, %Settings{} = settings} = Accounts.update_settings(settings, update_attrs)
+      assert settings.active == false
+      assert settings.contact_email == "some updated contact_email"
+      assert settings.public == false
+    end
+
+    test "update_settings/2 with invalid data returns error changeset" do
+      settings = settings_fixture()
+      assert {:error, %Ecto.Changeset{}} = Accounts.update_settings(settings, @invalid_attrs)
+      assert settings == Accounts.get_settings!(settings.id)
+    end
+
+    test "delete_settings/1 deletes the settings" do
+      settings = settings_fixture()
+      assert {:ok, %Settings{}} = Accounts.delete_settings(settings)
+      assert_raise Ecto.NoResultsError, fn -> Accounts.get_settings!(settings.id) end
+    end
+
+    test "change_settings/1 returns a settings changeset" do
+      settings = settings_fixture()
+      assert %Ecto.Changeset{} = Accounts.change_settings(settings)
+    end
+  end
 end
