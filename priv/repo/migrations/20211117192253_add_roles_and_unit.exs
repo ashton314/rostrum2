@@ -7,6 +7,6 @@ defmodule Rostrum.Repo.Migrations.AddRolesAndUnit do
       add :unit_id, references(:units)
     end
 
-    create index("user_unit_id", [:unit_id])
+    create index(:users, [:unit_id])
   end
 end

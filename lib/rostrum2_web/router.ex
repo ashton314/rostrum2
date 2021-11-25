@@ -77,6 +77,30 @@ defmodule RostrumWeb.Router do
     get "/users/settings", UserSettingsController, :edit
     put "/users/settings", UserSettingsController, :update
     get "/users/settings/confirm_email/:token", UserSettingsController, :confirm_email
+
+    # Settings routes
+    live "/settings", SettingsLive.Index, :index
+    live "/settings/new", SettingsLive.Index, :new
+    live "/settings/:id/edit", SettingsLive.Index, :edit
+
+    live "/settings/:id", SettingsLive.Show, :show
+    live "/settings/:id/show/edit", SettingsLive.Show, :edit
+
+    # Event routes
+    live "/events", EventLive.Index, :index
+    live "/events/new", EventLive.Index, :new
+    live "/events/:id/edit", EventLive.Index, :edit
+
+    live "/events/:id", EventLive.Show, :show
+    live "/events/:id/show/edit", EventLive.Show, :edit
+
+    # Meeting routes
+    live "/meetings", MeetingLive.Index, :index
+    live "/meetings/new", MeetingLive.Index, :new
+    live "/meetings/:id/edit", MeetingLive.Index, :edit
+
+    live "/meetings/:id", MeetingLive.Show, :show
+    live "/meetings/:id/show/edit", MeetingLive.Show, :edit
   end
 
   scope "/", RostrumWeb do

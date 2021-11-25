@@ -1,6 +1,7 @@
 defmodule Rostrum.Accounts.Unit do
   use Ecto.Schema
   import Ecto.Changeset
+  alias Rostrum.Accounts.User
 
   schema "units" do
     field :name, :string
