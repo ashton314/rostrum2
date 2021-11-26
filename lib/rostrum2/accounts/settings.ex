@@ -1,13 +1,15 @@
 defmodule Rostrum.Accounts.Settings do
   use Ecto.Schema
   import Ecto.Changeset
+  alias Rostrum.Accounts.Unit
 
   schema "settings" do
     field :active, :boolean, default: false
     field :contact_email, :string
     field :public, :boolean, default: false
-    field :unit_id, :id
     field :admin_id, :id
+
+    belongs_to :unit, Unit
 
     timestamps()
   end

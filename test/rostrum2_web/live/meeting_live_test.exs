@@ -5,7 +5,7 @@ defmodule RostrumWeb.MeetingLiveTest do
   import Rostrum.MeetingsFixtures
   import Rostrum.AccountsFixtures
 
-  alias RostrumWeb.UserAuth
+  alias Rostrum.Accounts
 
   @create_attrs %{date: %{day: 24, hour: 4, minute: 22, month: 11, year: 2021}, title: "some title"}
   @update_attrs %{date: %{day: 25, hour: 4, minute: 22, month: 11, year: 2021}, title: "some updated title"}
@@ -26,8 +26,7 @@ defmodule RostrumWeb.MeetingLiveTest do
   end
 
   defp login_user(%{conn: conn, user: user}) do
-    conn = UserAuth.log_in_user(conn, user)
-    %{conn: conn}
+    %{conn: put_session(conn, :user_token, Accounts.generate_user_session_token(user))}
   end
 
   defp create_meeting(%{unit: unit}) do
@@ -98,7 +97,7 @@ defmodule RostrumWeb.MeetingLiveTest do
   end
 
   describe "Show" do
-    setup [:create_meeting]
+    setup [:create_unit, :create_user, :login_user, :create_meeting]
 
     test "displays meeting", %{conn: conn, meeting: meeting} do
       {:ok, _show_live, html} = live(conn, Routes.meeting_show_path(conn, :show, meeting))
