@@ -4,6 +4,8 @@ defmodule Rostrum.Accounts.Unit do
   alias Rostrum.Accounts.User
   alias Rostrum.Meetings.Meeting
 
+  @primary_key {:id, :binary_id, autogenerate: true}
+  @foreign_key_type :binary_id
   schema "units" do
     field :name, :string
 

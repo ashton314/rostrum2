@@ -3,6 +3,8 @@ defmodule Rostrum.Meetings.Meeting do
   import Ecto.Changeset
   alias Rostrum.Accounts.Unit
 
+  @primary_key {:id, :binary_id, autogenerate: true}
+  @foreign_key_type :binary_id
   schema "meetings" do
     field :date, :naive_datetime
     field :title, :string

@@ -3,6 +3,8 @@ defmodule Rostrum.Accounts.Settings do
   import Ecto.Changeset
   alias Rostrum.Accounts.Unit
 
+  @primary_key {:id, :binary_id, autogenerate: true}
+  @foreign_key_type :binary_id
   schema "settings" do
     field :active, :boolean, default: false
     field :contact_email, :string

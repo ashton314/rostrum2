@@ -3,6 +3,8 @@ defmodule Rostrum.Accounts.User do
   import Ecto.Changeset
   alias Rostrum.Accounts.Unit
 
+  @primary_key {:id, :binary_id, autogenerate: true}
+  @foreign_key_type :binary_id
   schema "users" do
     field :email, :string
     field :password, :string, virtual: true, redact: true
