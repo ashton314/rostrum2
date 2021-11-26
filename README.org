@@ -3,7 +3,7 @@
 
 A web application to manage the creation and publication of programs for religious services, like those of the weekly Sunday services held by the [[https://churchofjesuschrist.org][Church of Jesus Christ of Latter-day Saints]].
 
-* Up and running
+* Synopsis
 
 This project is built using the [[https://phoenixframework.org/][Phoenix web framework]] built on top of [[https://elixir-lang.org][Elixir]].
 
@@ -14,23 +14,46 @@ This project is built using the [[https://phoenixframework.org/][Phoenix web fra
 
 Project should be running at [[http://localhost:4000]].
 
-* Goals
+* Description
+
+Online bulletins are all the rage now: they're more convenient, not to mention better for our health (no COVID, please) and the environment. Sharing a link to a read-only version of a Google Doc is kinda… well… sub-optimal. Let's make something that is both easy to use and really pretty to look at.
+
+** Goals
 
  - Web-first: I'll be skipping the PDF generation and focusing on having a nice, easy-to-read web version.
- - Flexible: I won't take too much structure into it this time.
+ - Flexible: I won't take too much structure into the programs this time.
  - Multi-account: we'll bake accounts into the project from the beginning.
 
-* Road map [0/4]
+** Stack
 
- - [ ] Authentication
+ - Postgres
+ - Elixir
+ - Phoenix
+ - LiveView
+ - Tailwind
+ - Alpine.js?
+
+** Road map [1/4]
+
+ - [X] Authentication
  - [ ] Program builder interface
  - [ ] Public, non-authenticated render
  - [ ] QR code generation
 
-* License
+* Contributing
+
+Contributions welcome!
+
+When you open a PR, please include a descriptive PR write-up (it doesn't have to be a dissertation, but it should explain well what the purpose of the PR is) and include some tests to validate your changes.
+
+Be kind. This is a hobby project being run by a very busy college student.
+
+* License and disclaimer
 
 MIT License
 
-* Author
+This work is not endorsed by the [[https://churchofjesuschrist.org/][Church of Jesus Christ of Latter-day Saints]] or any of its representatives. It is simply modeled after the needs of a typical Sunday worship service. You may use this software for anything you like.
 
-[[https://github.com/ashton314][Ashton Wiersdorf]]
+* Authors
+
+ - [[https://github.com/ashton314][Ashton Wiersdorf]]
