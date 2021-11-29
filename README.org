@@ -33,12 +33,18 @@ Online bulletins are all the rage now: they're more convenient, not to mention b
  - Tailwind
  - Alpine.js?
 
-** Road map [1/4]
+*** Dev Installation
+
+Until I have a docker-compose file, the best way to get this running is to [[https://elixir-lang.org/install.html][install Elixir]] on your host system, then [[https://www.docker.com/get-started][install Docker]]. That should be everything you need to get started. Just follow the steps under [[Synopsis]].
+
+** Road map [1/6]
 
  - [X] Authentication
  - [ ] Program builder interface
  - [ ] Public, non-authenticated render
  - [ ] QR code generation
+ - [ ] Self-serve account management
+ - [ ] Customizable templates
 
 * Contributing
 
