@@ -3,6 +3,8 @@
 
 A web application to manage the creation and publication of programs for religious services, like those of the weekly Sunday services held by the [[https://churchofjesuschrist.org][Church of Jesus Christ of Latter-day Saints]].
 
+Will eventually include a QR code that attendees can scan to view the current program.
+
 * Synopsis
 
 This project is built using the [[https://phoenixframework.org/][Phoenix web framework]] built on top of [[https://elixir-lang.org][Elixir]].
